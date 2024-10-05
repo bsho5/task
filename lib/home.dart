@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:task/items.dart';
@@ -12,6 +13,10 @@ class Home extends StatefulWidget {
 class _MyWidgetState extends State<Home> {
   final List<Widget> _tabs = [
     const Items(),
+        const Items(),
+            const Items(),
+                const Items(),
+                    const Items(),
   ];
 
   @override
@@ -25,19 +30,27 @@ class _MyWidgetState extends State<Home> {
             children: [
               screenWidth > 1000
                   ? const SizedBox(width: 80.0)
-                  : Row(
+                  : screenWidth>450? Row(
                       children: [
-                        SizedBox(width: 40.0),
+                        const SizedBox(width: 40.0),
                         SvgPicture.asset("icons/menu.svg", semanticsLabel: 'Acme Logo'),
-                        SizedBox(width: 10.0),
+                        const SizedBox(width: 10.0),
+                      ],
+                    ) : Row(
+                      children: [
+                        const SizedBox(width: 10.0),
+                        SvgPicture.asset("icons/menu.svg", semanticsLabel: 'Acme Logo',width: 20,),
+                        const SizedBox(width: 10.0),
                       ],
                     ),
-              SvgPicture.asset("icons/logo.svg", semanticsLabel: 'Acme Logo'),
+             screenWidth<450? SvgPicture.asset("icons/logo.svg", semanticsLabel: 'Acme Logo',width:  60,):SvgPicture.asset("icons/logo.svg", semanticsLabel: 'Acme Logo',),
             ],
           ),
           title: screenWidth > 1000
-              ? TabBar(
+              ? const TabBar(
                   indicatorWeight: 3,
+                  indicatorSize: TabBarIndicatorSize.label,
+                  
                   indicatorColor: Color.fromRGBO(255, 194, 104, 1),
                   tabs: [
                     Tab(height: 76, text: 'Items'),
@@ -47,7 +60,7 @@ class _MyWidgetState extends State<Home> {
                     Tab(height: 76, text: 'Analytics'),
                   ],
                 )
-              : SizedBox(),
+              : const SizedBox(),
           actions: const [
             _AppBar(),
           ],
@@ -59,13 +72,14 @@ class _MyWidgetState extends State<Home> {
           backgroundColor: Colors.black,
           centerTitle: true,
           toolbarHeight: 76,
-          titleSpacing: 100,
+          titleSpacing:screenWidth < 450 ?5: 100,
           automaticallyImplyLeading: false,
-          leadingWidth: 170,
+          leadingWidth:screenWidth < 450 ?100: 170,
         ),
         backgroundColor: Colors.black,
         body: TabBarView(
           children: _tabs,
+          physics: NeverScrollableScrollPhysics(),
         ),
       ),
     );
@@ -79,17 +93,18 @@ class _AppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+      int screenWidth = MediaQuery.of(context).size.width.toInt();
     return Container(
       height: 76,
-      child: const Padding(
-        padding: EdgeInsets.only(right: 80.0),
+      child:  Padding(
+        padding: EdgeInsets.only(right:screenWidth>450? 80.0 : 0.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             IntrinsicHeight(
               child: Row(
                 children: [
-                  _VerticalDivider(),
+                 screenWidth>450?  _VerticalDivider() : SizedBox(),
                   _Buttons(),
                   _VerticalDivider(),
                   _Info(),
@@ -110,21 +125,22 @@ class _Info extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     int screenWidth = MediaQuery.of(context).size.width.toInt();
     return Row(
       children: [
         Container(
           height: 32,
           width: 32,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(100), color: Colors.white, image: DecorationImage(image: AssetImage("images/image_1.png"))),
+              borderRadius: BorderRadius.circular(100), color: Colors.white, image: const DecorationImage(image: AssetImage("images/image_1.png"))),
         ),
         const SizedBox(
           width: 12,
         ),
-        const Text(
+       screenWidth > 450? const Text(
           "John Doe",
           style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal),
-        )
+        ):const SizedBox()
       ],
     );
   }
@@ -137,14 +153,15 @@ class _Buttons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     int screenWidth = MediaQuery.of(context).size.width.toInt();
     return Row(
       children: [
         InkWell(
           onTap: () {},
           child: SvgPicture.asset("icons/settings.svg", semanticsLabel: 'Acme Logo'),
         ),
-        const SizedBox(
-          width: 22,
+         SizedBox(
+          width:screenWidth<450?12: 22,
         ),
         InkWell(
           onTap: () {},
@@ -162,18 +179,22 @@ class _VerticalDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+     int screenWidth = MediaQuery.of(context).size.width.toInt();
+    return  Row(
       children: [
         SizedBox(
-          width: 22,
+           width:screenWidth<450?5: 22,
         ),
-        VerticalDivider(
-          thickness: 0.2,
-          color: Colors.white54,
-          width: 0.2,
+        Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: const VerticalDivider(
+            thickness: 0.2,
+            color: Colors.white54,
+            width: 0.2,
+          ),
         ),
         SizedBox(
-          width: 22,
+          width:screenWidth<450?5: 22,
         ),
       ],
     );

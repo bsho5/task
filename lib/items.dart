@@ -28,12 +28,6 @@ List<String> images = [
   "images/trees.png",
   "images/water.png",
   "images/city.png",
-  "images/trees.png",
-  "images/water.png",
-  "images/city.png",
-  "images/trees.png",
-  "images/water.png",
-  "images/city.png",
 ];
 
 class _PageView extends StatelessWidget {
@@ -41,12 +35,13 @@ class _PageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int screenWidth = MediaQuery.of(context).size.width.toInt() - 160;
+    int padding = MediaQuery.of(context).size.width.toInt()>450? 80:10;
+    int screenWidth = MediaQuery.of(context).size.width.toInt() - (padding * 2);
     int count = (screenWidth / 258).toInt();
     double gridWidth = (screenWidth / count) - 16;
     //width < 1200 && width > 600 ?4 : width < 600 && width > 300?2 : width < 300 ?1 : 5;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 30),
+      padding:  EdgeInsets.symmetric(horizontal: padding.toDouble(), vertical: 30),
       child: GridView.builder(
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
