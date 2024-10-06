@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:task/config.dart';
 import 'package:task/home.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await AppConfig.init();
   runApp(const MainApp());
 }
 

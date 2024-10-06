@@ -3,6 +3,7 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
+import 'package:task/config.dart';
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
@@ -40,6 +41,8 @@ class DefaultFirebaseOptions {
     }
   }
 
+  static AppConfig config = AppConfig.instance;
+
   static const FirebaseOptions web = FirebaseOptions(
     apiKey: 'AIzaSyATzOY44S-OyK1tCR-ugGj9hUua-DUMbPY',
     appId: '1:771744917375:web:bb434e0f9a24ddbb7f9c4a',
@@ -49,38 +52,38 @@ class DefaultFirebaseOptions {
     storageBucket: 'mubashar-task.appspot.com',
   );
 
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCmycqrtOoDA_ieHW-_NCUqIdg9J315PFk',
-    appId: '1:771744917375:android:35aaedff6d7c52947f9c4a',
-    messagingSenderId: '771744917375',
-    projectId: 'mubashar-task',
-    storageBucket: 'mubashar-task.appspot.com',
+  static FirebaseOptions android = FirebaseOptions(
+    apiKey: config.androidConfig.apiKey,
+    appId: config.androidConfig.appId,
+    messagingSenderId: config.androidConfig.messagingSenderId,
+    projectId: config.androidConfig.projectId,
+    storageBucket: config.androidConfig.storageBucket,
   );
 
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCykik__4134liYuyPI6jUUSkSFlmEjiSo',
-    appId: '1:771744917375:ios:92240bba13f5272b7f9c4a',
-    messagingSenderId: '771744917375',
-    projectId: 'mubashar-task',
-    storageBucket: 'mubashar-task.appspot.com',
-    iosBundleId: 'com.example.task',
+  static FirebaseOptions ios = FirebaseOptions(
+    apiKey: config.iosConfig.apiKey,
+    appId: config.iosConfig.appId,
+    messagingSenderId: config.iosConfig.messagingSenderId,
+    projectId: config.iosConfig.projectId,
+    storageBucket: config.iosConfig.storageBucket,
+    iosBundleId: config.iosConfig.iosBundleId,
   );
 
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyCykik__4134liYuyPI6jUUSkSFlmEjiSo',
-    appId: '1:771744917375:ios:92240bba13f5272b7f9c4a',
-    messagingSenderId: '771744917375',
-    projectId: 'mubashar-task',
-    storageBucket: 'mubashar-task.appspot.com',
-    iosBundleId: 'com.example.task',
+  static FirebaseOptions macos = FirebaseOptions(
+    apiKey: config.macosConfig.apiKey,
+    appId: config.macosConfig.appId,
+    messagingSenderId: config.macosConfig.messagingSenderId,
+    projectId: config.macosConfig.projectId,
+    storageBucket: config.macosConfig.storageBucket,
+    iosBundleId: config.macosConfig.iosBundleId,
   );
 
-  static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyATzOY44S-OyK1tCR-ugGj9hUua-DUMbPY',
-    appId: '1:771744917375:web:02ae2374a1235abc7f9c4a',
-    messagingSenderId: '771744917375',
-    projectId: 'mubashar-task',
-    authDomain: 'mubashar-task.firebaseapp.com',
-    storageBucket: 'mubashar-task.appspot.com',
+  static FirebaseOptions windows = FirebaseOptions(
+    apiKey: config.windowsConfig.apiKey,
+    appId: config.windowsConfig.appId,
+    messagingSenderId: config.windowsConfig.messagingSenderId,
+    projectId: config.windowsConfig.projectId,
+    authDomain: config.windowsConfig.authDomain,
+    storageBucket: config.windowsConfig.storageBucket,
   );
 }
