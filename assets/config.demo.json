@@ -1,0 +1,41 @@
+{
+  "ios": {
+    "apiKey": "",
+    "appId": "",
+    "messagingSenderId": "",
+    "projectId": "",
+    "storageBucket": "",
+    "iosBundleId": ""
+  },
+  "android": {
+    "apiKey": "",
+    "appId": "",
+    "messagingSenderId": "",
+    "projectId": "",
+    "storageBucket": ""
+  },
+  "web": {
+    "apiKey": "",
+    "appId": "",
+    "messagingSenderId": "",
+    "projectId": "",
+    "authDomain": "",
+    "storageBucket": ""
+  },
+  "macos": {
+    "apiKey": "",
+    "appId": "",
+    "messagingSenderId": "",
+    "projectId": "",
+    "storageBucket": "",
+    "iosBundleId": ""
+  },
+  "windows": {
+    "apiKey": "",
+    "appId": "",
+    "messagingSenderId": "",
+    "projectId": "",
+    "authDomain": "",
+    "storageBucket": ""
+  }
+}
